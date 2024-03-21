@@ -16,6 +16,9 @@ function App() {
         })
       }
 
+ {/* <Card lang={data[0].language} img={data[0].img} />
+      <Card lang={data[1].language} img={data[1].img} />
+      <Card lang={data[2].language} img={data[2].img} /> */}
     </div>
   )
 }
