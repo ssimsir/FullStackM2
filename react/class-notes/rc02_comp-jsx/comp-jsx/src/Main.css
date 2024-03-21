@@ -1,0 +1,17 @@
+/* CSS Ortami  */
+.par {
+  color: green;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img {
+  width: 300px;
+  border: 2px solid;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+
+#img-id {
+  width: 150px;
+}

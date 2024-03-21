@@ -20,11 +20,11 @@
 }
 
 .picture h1{
-    
+    font-size: large;
 }
 
 .picture img{
     width: 20vw;
-    min-width: 180px;
+    min-width: 200px;
     height: 50vh;
 }
