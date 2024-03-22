@@ -6,25 +6,40 @@
     box-sizing: border-box;
 }
 
-.picture-main{
+.pictureContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-
     margin: 2rem;
 }
 
-.picture {
-    padding: 1rem;
-    margin-bottom: 1rem;
+.pictureMain {
+    width: 20vw;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.4);
+    overflow: hidden ;
 }
 
-.picture h1{
+
+.pictureMain h1{
     font-size: large;
 }
 
-.picture img{
-    width: 20vw;
-    min-width: 200px;
-    height: 50vh;
+.pictureMain .picture{
+
+    overflow: hidden;
+}
+
+.pictureMain .picture img{
+
+    height:100%;
+    object-fit:cover;
+    transition:all 1s;
+}
+
+.pictureMain .picture img:hover{
+    transform:scale(1.2)
 }
