@@ -1,2 +1,0 @@
-*{box-sizing:border-box;margin:0;padding:0}.pictureContainer{display:flex;flex-wrap:wrap;justify-content:space-around;margin:2rem}.pictureMain{border-radius:10px;box-shadow:8px 8px 25px #0006;margin-bottom:1.5rem;overflow:hidden;padding-bottom:1rem;text-align:center;width:20vw}.pictureMain h1{font-size:large}.pictureMain .picture{overflow:hidden}.pictureMain .picture img{height:100%;object-fit:cover;transition:all 1s}.pictureMain .picture img:hover{transform:scale(1.2)}
-/*# sourceMappingURL=main.8840f142.css.map*/

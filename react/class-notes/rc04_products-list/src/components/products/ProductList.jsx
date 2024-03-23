@@ -1,8 +1,13 @@
-const ProductList = () => {
+import ProductCard from "./ProductCard"
+import "./Products.scss"
 
+
+const ProductList = ({products}) => {
     return(
-        <div>
-            <h1>Product list</h1>
+        <div className="products-list">
+            {
+                products.map(product => <ProductCard key={product.id} {...product}/>)
+            }
         </div>
     )
 }

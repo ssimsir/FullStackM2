@@ -9,7 +9,7 @@ function App() {
 
   return (
 
-    <div className="App">
+    <div>
       <Header categories = {categories} text = "Products List"/>
       <ProductList products = {products}/>
     </div>

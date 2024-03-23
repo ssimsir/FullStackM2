@@ -1,0 +1,55 @@
+@import "../../scss/veriables";
+@import "../../scss/mixins";
+
+
+.products-list{
+    @include flex(row, space-evenly, 2rem);
+    margin: 1rem;
+    .card{
+        width: 350px;
+        height: $cardHeight;
+        position: relative;
+        overflow: hidden;
+        .price{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $cardBgColor;
+            padding: $cardPadding;
+            font-size: 0.9rem;
+            border-radius: $borderRadius;
+            color: $cardColor;
+            z-index: 2;
+        }
+        img{
+            width: 100%;
+            height: $cardHeight;
+            border-radius: $borderRadius;
+            filter:sepia(100%)
+        }
+        &__over{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background-color: $cardBgColor;
+            color: darken($cardColor, 50%);
+            font-size: 1.2rem;
+            padding: $cardPadding;
+            border-radius: $borderRadius;
+            transform: translateX(100%);
+            transition: transform 0.7s;
+            height: 25%;
+            overflow: auto;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+        &:hover .card__over{
+            transform: translateX(0%);
+        }
+        &:hover img{
+            filter:none
+        }
+    }
+}

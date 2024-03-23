@@ -1,5 +1,5 @@
 @import "../../scss/veriables";
-
+@import "../../scss/mixins";
 .header {
     text-align: center;
     padding: .5rem;
@@ -9,6 +9,26 @@
         font-size: 2.3rem;
         margin-bottom: 1rem;
         color: $cardNavBgColor;
+        font-family: monospace;
     }
-    
+    .btns{
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: center;
+        // gap: 1rem;
+        @include flex(row, center, 1rem);
+
+        button{
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 1s;
+            &:hover {
+                background-color: $btnHoverColor;
+            }
+        }
+    }
+
 }
