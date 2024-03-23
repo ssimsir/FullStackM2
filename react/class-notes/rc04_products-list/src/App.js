@@ -1,13 +1,17 @@
+import Header from "./components/header/Header"
+import ProductList from "./components/products/ProductList"
+
+import {products, categories} from "./helper/data"
+
+import "./App.scss"
 //? Component
 function App() {
-  //? JS kodu
-  const deneme = "REACT"
 
   return (
-    //! JSX (HTML- JS'nin birleşmiş hali)
+
     <div className="App">
-      <h2 style={{ color: "red" }}>Hoşgeldin Ya Şehri React</h2>
-      <p className="par">{deneme}</p>
+      <Header categories = {categories} text = "Products List"/>
+      <ProductList products = {products}/>
     </div>
   )
 }
