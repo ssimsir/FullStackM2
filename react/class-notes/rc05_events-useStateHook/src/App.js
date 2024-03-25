@@ -1,9 +1,10 @@
-import Event from "./1-events/Event"
+
+import UseStateObject from "./3-useStateComp/UseStateObject"
 
 function App() {
   return (
     <>
-      <Event />
+      <UseStateObject />
     </>
   )
 }
