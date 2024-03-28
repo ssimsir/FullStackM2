@@ -1,10 +1,13 @@
-
+import { Container } from 'react-bootstrap'
+import Header from "./components/header/Header";
+import LegendsContainer from "./components/legends/LegendsContainer";
 
 function App() {
   return (
-    <div>
-      Hello React
-    </div>
+    <Container>
+      <Header/>
+      <LegendsContainer/>
+    </Container>
   );
 }
 
