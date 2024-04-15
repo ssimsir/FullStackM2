@@ -1,10 +1,28 @@
 import { useState } from "react"
+import axios from "axios"
 
-const AddTutorial = () => {
+const AddTutorial = ({ getTutorials }) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
 
-  const handleSubmit = (e) => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    //TODO POST
+    const newTutor = { title, description }
+    postTutorial(newTutor)
+    setTitle("")
+    setDescription("")
+  }
+
+  const postTutorial = async (newTutor) => {
+    try {
+      const res = await axios.post(process.env.REACT_APP_URL, newTutor)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+    getTutorials()
+  }
 
   return (
     <div className="container text-center mt-4">

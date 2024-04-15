@@ -1,20 +1,40 @@
 import { FaEdit } from "react-icons/fa"
 import { AiFillDelete } from "react-icons/ai"
+import axios from "axios"
+import EditModal from "./EditModal"
+import { useState } from "react"
 
-const TutorialList = () => {
-  const tutorials = [
-    {
-      id: 1,
-      title: "JS",
-      description: "JS is a programming language",
-    },
-    {
-      id: 2,
-      title: "React",
-      description: "JS library for UI design",
-    },
-  ]
 
+const TutorialList = ({tutorials, getTutorials}) => {
+  //? mock data
+  // const tutorials = [
+  //   {
+  //     id: 1,
+  //     title: "JS",
+  //     description: "JS is a programming language",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "React",
+  //     description: "JS library for UI design",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Vue",
+  //     description: "JS library for UI design",
+  //   },
+  // ]
+
+  const [editData, setEditData] = useState({})
+  const deleteTutorial = async(id) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_URL}${id}/ `)
+    } catch (error) {
+      
+    }
+    getTutorials()
+  }
+  console.log(editData)
   return (
     <div className="container mt-4">
       <table className="table table-striped">
@@ -41,11 +61,15 @@ const TutorialList = () => {
                     size={20}
                     type="button"
                     className="me-2 text-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#open-modal"
+                    onClick={() => setEditData(item)}
                   />
                   <AiFillDelete
                     size={22}
                     type="button"
                     className="text-danger "
+                    onClick={()=> deleteTutorial(id)}
                   />
                 </td>
               </tr>
@@ -53,6 +77,9 @@ const TutorialList = () => {
           })}
         </tbody>
       </table>
+          
+          <EditModal editData={editData} />
+
     </div>
   )
 }
