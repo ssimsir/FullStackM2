@@ -1,19 +1,37 @@
 import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import NotFound from "./NotFound"
 
 const People = () => {
   const [people, setPeople] = useState([])
+const [error, setError]= useState(false)
+
   const navigate = useNavigate()
 
   const getPeople = () => {
     fetch("https://reqres.in/api/users")
-      .then((res) => res.json())
+      .then((res) => 
+        {
+          if (!res.ok){
+            setError(true)
+            throw new Error("User can not found")
+          }
+            return res.json()
+        }
+      )
       .then((data) => setPeople(data.data))
       .catch((err) => console.log(err))
   }
   useEffect(() => {
     getPeople()
   }, [])
+
+//Conditional rendering
+
+  if(error){
+    return <NotFound />
+    
+  } else {
 
   return (
     <div className="container text-center mt-4">
@@ -38,6 +56,7 @@ const People = () => {
       </div>
     </div>
   )
+}
 }
 
 export default People
