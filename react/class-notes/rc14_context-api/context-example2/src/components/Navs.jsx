@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Image from "react-bootstrap/Image";
+import { Link } from "react-router-dom"
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import Image from "react-bootstrap/Image"
+import { useContext } from "react"
+import { LoginContext } from "../context/LoginContext"
 
 function Navs() {
+  //? consuming
+  const { signed, setSigned } = useContext(LoginContext)
+
   return (
     <Navbar expand="md">
       <Container>
@@ -29,14 +34,25 @@ function Navs() {
             <Link className="nav-link" to="/people">
               People
             </Link>
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
+
+            {signed ? (
+              <Link
+                className="nav-link"
+                to="/login"
+                onClick={() => setSigned(false)}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
+  )
 }
 
-export default Navs;
+export default Navs

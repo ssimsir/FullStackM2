@@ -1,15 +1,28 @@
-import { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useState } from "react"
+import Container from "react-bootstrap/Container"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import { useContext } from "react"
+import { LoginContext } from "../context/LoginContext"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({ email: "", password: "" })
+
+  //? 3. Login Context'in okunması (Consuming)
+  const { signed, setSigned } = useContext(LoginContext)
+
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+    e.preventDefault()
+    user?.email && user?.password && setSigned(true)
+    setUser({ email: "", password: "" })
+    // navigate("/people")
+    navigate(-1) //? bir önceki adres git (people)
+  }
 
+  console.log(user)
   return (
     <Container>
       <h1 className="text-center mt-4">LOGIN PAGE</h1>
@@ -42,7 +55,7 @@ const Login = () => {
         </Container>
       </Form>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
