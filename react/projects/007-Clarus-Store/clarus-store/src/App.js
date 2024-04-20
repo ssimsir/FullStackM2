@@ -5,12 +5,15 @@
 // import About from "./pages/About";
 // import NotFound from "./pages/NotFound";
 
+import AuthProvider from "./context/AuthProvider";
 import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div>
-      <AppRouter />
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
       {/*//* route yapısını router dosyasına taşıdık */}
       {/* <BrowserRouter>
         <Routes>
