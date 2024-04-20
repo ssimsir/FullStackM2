@@ -1,14 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Login from "./pages/Login";
+// import Home from "./pages/Home";
+// import Products from "./pages/Products";
+// import About from "./pages/About";
+// import NotFound from "./pages/NotFound";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <AppRouter/>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path="/home" element={<Home />}/>
@@ -16,7 +18,7 @@ function App() {
           <Route path="/about" element={<About />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
 
       
     </div>

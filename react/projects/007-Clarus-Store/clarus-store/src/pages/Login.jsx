@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      if (email.toLowerCase === "admin@aa.com" && password === "admin"){
+         console.log(email, password)
+         //login({email, password})
+      } else {
+         alert("Kullanıcı bilgileri yanlış")
+      }
+   }
   return (
     <div className="loginDiv">
       <div className="h-[500px] w-11/12 sm:w-[475px] bg-white rounded-[20px] p-5 flex flex-col justify-center text-center ">
@@ -16,7 +30,7 @@ const Login = () => {
             Enter your credentials to access your account
           </p>
         </div>
-        <form className="flex flex-col text-left p-3 gap-5 ">
+        <form onSubmit={handleSubmit} className="flex flex-col text-left p-3 gap-5 ">
           <div className="flex flex-col gap-2">
             <label
               className="font-montserrat text-label text-labelColor hover:cursor-pointer hover:after:content-['admin@aa.com'] hover:after:text-black hover:after:pl-3 hover:after:underline"
@@ -30,6 +44,7 @@ const Login = () => {
               id="email"
               placeholder="Enter your email"
               required
+              onChange={e=> setEmail(e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -45,6 +60,7 @@ const Login = () => {
               id="password"
               placeholder="Enter your password"
               required
+              onChange={e=> setPassword(e.target.value)}
             />
           </div>
           <button className="bg-main h-[44px] font-montserrat text-label text-white uppercase hover:opacity-90 rounded-[4px] ">
