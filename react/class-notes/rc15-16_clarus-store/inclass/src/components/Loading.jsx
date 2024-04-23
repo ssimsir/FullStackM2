@@ -1,5 +1,5 @@
 import React from "react";
-import { imageIcon } from "../helpers/icons";
+import { imageIcon } from "../helper/icons";
 
 const Loading = () => {
   return (
