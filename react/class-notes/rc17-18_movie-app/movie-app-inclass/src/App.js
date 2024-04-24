@@ -1,10 +1,12 @@
 import React from "react";
-import Register from "./pages/Register";
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
-    <div>
-      <Register />
+    <div className="dark:bg-gray-dark-main min-h-screen">
+      
+      <AppRouter/>
+      <ToastContainer />
     </div>
   );
 };
