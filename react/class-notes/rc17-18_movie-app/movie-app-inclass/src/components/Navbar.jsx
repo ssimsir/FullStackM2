@@ -5,13 +5,12 @@ import Switch from "./Switch";
 import avatar from "../assets/icons/avatar.png";
 import { useAuthContext } from "../context/AuthProvider";
 
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const { currentUser } = useAuthContext();
+  const { currentUser, logOut } = useAuthContext();
   // const currentUser = { displayName: "felix franko" };
   // const currentUser = false;
   return (
@@ -85,6 +84,7 @@ export default function Navbar() {
                       {({ active }) => (
                         <span
                           role="button"
+                          onClick={() => logOut()}
                           className={classNames(
                             active ? "bg-gray-100" : "",
                             "block px-4 py-2 text-sm text-gray-700 cursor-pointer"

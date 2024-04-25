@@ -1,8 +1,10 @@
 import React from "react";
 import { searchIcon } from "../helpers/icons";
+import { useProductContext } from "../context/ProductProvider";
 
-const SearchInput = ({setSearch, search}) => {
 
+const SearchInput = () => {
+  const {setSearch, search} = useProductContext()
   return (
     <div className="">
       <div className="relative w-6/12 mx-auto">
