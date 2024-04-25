@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({product}) => {
   const { id, title,images, thumbnail , category, price } = product
+  const navigate = useNavigate()
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer" onClick={() => navigate(`${id}`, {state:product})}>
       <div className="w-full rounded-md bg-gray-200 hover:opacity-75 lg:h-80">
         <img
           src={thumbnail}

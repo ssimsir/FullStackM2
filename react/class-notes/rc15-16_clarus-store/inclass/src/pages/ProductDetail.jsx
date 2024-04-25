@@ -2,12 +2,12 @@ import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 const ProductDetail = () => {
+	const params = useParams();
+	
 
-   const params = useParams()
-   console.log(params)
-
-   const location = useLocation()
-   console.log(location)
+	const { state } = useLocation();
+	
+	const { thumbnail, title, description, category, price, images } = state;
 
 	return (
 		<div className="mx-auto max-w-2xl px-4 pt-8 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -17,30 +17,37 @@ const ProductDetail = () => {
 						<div className="w-full row-span-3">
 							<img
 								className="h-full w-full rounded-lg"
-								src={"images"}
+								src={thumbnail}
 								alt=""
 							/>
 						</div>
 						<div className="grid grid-cols-3 gap-4 row-span-1">
-							<div>
-								<img
-									className="h-[15vh] w-full rounded-lg"
-									src={"item"}
-									alt=""
-									loading="lazy"
-								/>
-							</div>
+							{images.slice(0, 3).map((image, i) => (
+								<div key={i}>
+									<img
+										className="h-[15vh] w-full rounded-lg"
+										src={image}
+										alt=""
+										loading="lazy"
+										
+									/>
+								</div>
+							))}
 						</div>
 					</div>
 					<div className="w-full lg:w-5/12 flex flex-col justify-evenly p-4">
 						<div className="pt-3 ml-4 mr-2 mb-3">
-							<h3 className="text-xl text-gray-900">title</h3>
-							<p className="text-gray-400 mt-1">description</p>
+							<h3 className="text-xl text-gray-900">{title}</h3>
+							<p className="text-gray-400 mt-1">{description}</p>
 						</div>
 						<div className="flex  mt-2 pt-3 ml-4 mr-2">
 							<div className="">
-								<span className="block text-gray-900">Category :</span>
-								<span className="block  text-sm">Price : $</span>
+								<span className="block text-gray-900">
+									Category : {category}
+								</span>
+								<span className="block  text-sm">
+									Price : {price} $
+								</span>
 							</div>
 						</div>
 						<div className="flex justify-end gap-3 mt-4">
