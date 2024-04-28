@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Switch from "./Switch";
 import avatar from "../assets/icons/avatar.png"
+import { useAuthContext } from "../context/AuthProvider";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
@@ -10,7 +11,9 @@ function classNames(...classes) {
 
 const Navbar = () => {
 
-   const currentUser = {displayName : "Sadık ŞİMŞİR"}
+   //const currentUser = {displayName : "Sadık ŞİMŞİR"}
+
+	const {currentUser} =  useAuthContext()
 	return (
       <>
 		<Disclosure
