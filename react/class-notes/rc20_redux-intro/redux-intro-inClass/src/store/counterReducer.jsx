@@ -3,17 +3,20 @@ const initialState = {
    token: null,
 }
 
+export const arttir = "ARTTIR"
+export const azalt = "AZALT"
+export const sil = "SIL"
 
 export const counterReducer = (state=initialState, action) => {
    
    switch (action.type) {
-      case "ARTTIR":
+      case arttir:
          return {count:state.count+1}
          
-      case "AZALT":
+      case azalt:
          return {count:state.count-1}
          
-      case "SIL":
+      case sil:
          return {count:0}
          
       default:
