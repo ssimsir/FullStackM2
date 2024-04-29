@@ -9,7 +9,7 @@ function App() {
     <div className="app">
       <Provider store= {store}>
       <Counter />
-      {/* <Todo /> */}
+      <Todo />
       </Provider>
     </div>
   );
