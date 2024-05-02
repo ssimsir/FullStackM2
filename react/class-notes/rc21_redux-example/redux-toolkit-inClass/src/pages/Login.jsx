@@ -7,13 +7,23 @@ import Avatar from "@mui/material/Avatar"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { useState } from "react"
+import { setUser } from "../features/loginSlice"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    //TODO
+    //? Global state güncellenemli
+    dispatch(setUser({ email, password }))
+    //? Routing yapılmali
+    navigate("/")
     setEmail("")
     setPassword("")
   }
