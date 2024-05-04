@@ -68,9 +68,16 @@ const Login = () => {
 						validationSchema={loginSchema}
 						onSubmit={(values, actions) => {
 							//TODO
+							//? Form resetleme
+							actions.resetForm()
+							actions.setSubmitting(false) //?is submittin submit işlemi devam ederken true olur
+
+
+
+
 						}}
 					>
-						{({ values, handleChange, handleBlur, touched, errors }) => (
+						{({ values, handleChange, handleBlur, touched, errors, isSubmitting }) => (
 							<Form>
 								<Box
 									sx={{
@@ -105,7 +112,7 @@ const Login = () => {
 										}
 										helperText={touched.password && errors.password}
 									/>
-									<Button variant="contained" type="submit">
+									<Button variant="contained" type="submit"  disabled={isSubmitting}>
 										Submit
 									</Button>
 								</Box>
