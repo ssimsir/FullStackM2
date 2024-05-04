@@ -10,8 +10,10 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import { object, string } from "yup";
+import useApiRequest from "../services/useApiRequest";
 
 const Login = () => {
+	const {login} = useApiRequest
 	let loginSchema = object({
 		email: string()
 			.email("Geçerli bir email giriniz")
@@ -68,6 +70,8 @@ const Login = () => {
 						validationSchema={loginSchema}
 						onSubmit={(values, actions) => {
 							//TODO
+							//? post login
+							login (values)
 							//? Form resetleme
 							actions.resetForm()
 							actions.setSubmitting(false) //?is submittin submit işlemi devam ederken true olur
