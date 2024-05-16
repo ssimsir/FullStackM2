@@ -1,45 +1,62 @@
-import { useEffect, useState } from "react";
-import PurchasesTable from "../components/PurchasesTable";
-import useStockRequest from "../services/useStockRequest";
-import PurchasesModal from "../components/PurchasesModal";
+import { useEffect, useState } from "react"
+import useStockRequest from "../services/useStockRequest"
+import PurchaseModal from "../components/PurchaseModal"
+import PurchaseTable from "../components/PurchaseTable"
+import { Button, Container } from "@mui/material"
+import TableSkeleton, {
+  ErrorMessage,
+  NoDataMessage,
+} from "../components/DataFetchMessages"
+import { useSelector } from "react-redux"
 
 const Purchases = () => {
-
   const { getStock } = useStockRequest()
+  const { error, loading, purchases } = useSelector((state) => state.stock)
 
   const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const [info, setInfo] = useState({
-    firm: "",
-    product: "",
-    brand: "",
+
+  const initialState = {
+    brandId: "",
+    firmId: "",
+    productId: "",
     quantity: "",
-    price:"",
-  })
+    price: "",
+  }
+  const [info, setInfo] = useState(initialState)
+
+  const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
-    setInfo({
-      firm: "",
-      product: "",
-      brand: "",
-      quantity: "",
-      price:"",
-    })
+    setInfo(initialState)
   }
 
   useEffect(() => {
+    getStock("products")
     getStock("purchases")
-  }, [])
-	return (
-	<div>
-		<PurchasesTable handleOpen={handleOpen} setInfo={setInfo} />
-    <PurchasesModal
-        handleClose={handleClose}
+    getStock("brands")
+    getStock("firms")
+  }, []) // eslint-disable-line
+
+  return (
+    <Container maxWidth="xl">
+      <Button variant="contained" onClick={handleOpen}>
+        New Purchase
+      </Button>
+
+      {loading && <TableSkeleton />}
+      {!loading && !purchases?.length && <NoDataMessage />}
+      {!loading && purchases?.length > 0 && (
+        <PurchaseTable setInfo={setInfo} handleOpen={handleOpen} />
+      )}
+
+      <PurchaseModal
         open={open}
+        handleClose={handleClose}
         info={info}
         setInfo={setInfo}
       />
-	</div>)
-};
+    </Container>
+  )
+}
 
-export default Purchases;
+export default Purchases

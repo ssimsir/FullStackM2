@@ -7,6 +7,11 @@ import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
 import FirmCard from "../components/FirmCard"
 import FirmModal from "../components/FirmModal"
+import TableSkeleton, {
+  CardSkeleton,
+  ErrorMessage,
+  NoDataMessage,
+} from "../components/DataFetchMessages"
 
 // export const getFirms = async () => {
 //   try {
@@ -21,7 +26,7 @@ const Firms = () => {
   // const { axiosToken } = useAxios()
   // const { getFirms, getSales } = useStockRequest()
   const { getStock } = useStockRequest()
-  const { firms } = useSelector((state) => state.stock)
+  const { firms, loading, error } = useSelector((state) => state.stock)
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
 
@@ -55,9 +60,26 @@ const Firms = () => {
         Firms
       </Typography>
 
-      <Button variant="contained" onClick={handleOpen}>
+      <Button variant="contained" onClick={handleOpen} disabled={error}>
         New Firm
       </Button>
+
+      {loading && (
+        <CardSkeleton>
+          <FirmCard />
+        </CardSkeleton>
+      )}
+
+      {!loading && !firms.length && <NoDataMessage />}
+      {!loading && firms.length > 0 && (
+        <Grid container gap={2} mt={3} justifyContent={"center"}>
+          {firms.map((firm) => (
+            <Grid item key={firm._id}>
+              <FirmCard firm={firm} handleOpen={handleOpen} setInfo={setInfo} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
 
       <FirmModal
         handleClose={handleClose}
@@ -65,14 +87,6 @@ const Firms = () => {
         info={info}
         setInfo={setInfo}
       />
-
-      <Grid container gap={2} mt={3} justifyContent={"center"}>
-        {firms.map((firm) => (
-          <Grid item key={firm._id}>
-            <FirmCard firm={firm} handleOpen={handleOpen} setInfo={setInfo} />
-          </Grid>
-        ))}
-      </Grid>
     </div>
   )
 }

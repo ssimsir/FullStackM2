@@ -42,6 +42,7 @@ const useStockRequest = () => {
       const stockData = data.data
       dispatch(getStockSuccess({ stockData, path }))
     } catch (error) {
+      toastErrorNotify(`${path} verileri çekilememiştir.`)
       dispatch(fetchFail())
       console.log(error)
     }
@@ -51,8 +52,10 @@ const useStockRequest = () => {
     dispatch(fetchStart())
     try {
       await axiosToken.delete(`/${path}/${id}`)
+      toastSuccessNotify(`${path} basariliyla silinmiştir.`)
       getStock(path)
     } catch (error) {
+      toastErrorNotify(`${path} silinememiştir.`)
       dispatch(fetchFail())
       console.log(error)
     }
@@ -76,7 +79,9 @@ const useStockRequest = () => {
     try {
       await axiosToken.put(`/${path}/${info._id}`, info)
       getStock(path)
+      toastSuccessNotify(`${path} basariliyla guncellenmiştir.`)
     } catch (error) {
+      toastErrorNotify(`${path} guncellenememiştir.`)
       dispatch(fetchFail())
       console.log(error)
     }
