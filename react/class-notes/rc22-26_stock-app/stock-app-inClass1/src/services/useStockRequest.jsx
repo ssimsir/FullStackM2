@@ -86,6 +86,19 @@ const useStockRequest = () => {
       console.log(error)
     }
   }
+
+  const putStock = async (path = "firms", info) => {
+    dispatch(fetchStart())
+    try {
+      await axiosToken.put(`/${path}/${info._id}`, info)
+      getStock(path)
+      toastSuccessNotify(`${path} basariliyla guncellenmiştir.`)
+    } catch (error) {
+      toastErrorNotify(`${path} guncellenememiştir.`)
+      dispatch(fetchFail())
+      console.log(error)
+    }
+  }
   // return { getFirms, getSales }
 
   return { getStock, deleteStock, postStock, putStock }
