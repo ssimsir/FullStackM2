@@ -6,6 +6,7 @@ import {
   getFirmsSuccess,
   getSalesSuccess,
   getStockSuccess,
+  getProPurBraFirmSuccess,
 } from "../features/stockSlice"
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 
@@ -87,21 +88,29 @@ const useStockRequest = () => {
     }
   }
 
-  const putStock = async (path = "firms", info) => {
+  const getProPurBraFirmStock = async () => {
     dispatch(fetchStart())
     try {
-      await axiosToken.put(`/${path}/${info._id}`, info)
-      getStock(path)
-      toastSuccessNotify(`${path} basariliyla guncellenmiştir.`)
+      const [pro, pur, bra, fir] = await Promise.all([
+        axiosToken("/products"),
+        axiosToken("/purchases"),
+        axiosToken("/brands"),
+        axiosToken("/firms"),
+      ])
+      const products = pro?.data?.data
+      const purchases = pur?.data?.data
+      const brands = bra?.data?.data
+      const firms = fir?.data?.data
+
+      dispatch(getProPurBraFirmSuccess({ products, purchases, brands, firms }))
     } catch (error) {
-      toastErrorNotify(`${path} guncellenememiştir.`)
-      dispatch(fetchFail())
       console.log(error)
     }
   }
+
   // return { getFirms, getSales }
 
-  return { getStock, deleteStock, postStock, putStock }
+  return { getStock, deleteStock, postStock, putStock, getProPurBraFirmStock }
 }
 
 export default useStockRequest
