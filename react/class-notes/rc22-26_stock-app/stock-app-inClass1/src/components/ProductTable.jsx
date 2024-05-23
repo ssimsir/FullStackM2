@@ -65,7 +65,7 @@ export default function ProductTable() {
       },
     },
   ]
-
+console.log(products)
   return (
     <Box sx={{ width: "100%", mt: 3 }}>
       <DataGrid
