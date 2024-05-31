@@ -21,13 +21,13 @@ const Login = () => {
     <LoginContainer>
       <FormContainer>
         <StyledImg src={meal} />
-        <Header>
+        <Header data-test='loginHeader'>
           {`<Anthony/>`}Recipe
         </Header>
         <StyledForm onSubmit={loginSubmit}>
-          <StyledInput type="text" placeholder="Username" name="username" onChange={(e)=>setUsername(e.target.value)} required />
-          <StyledInput type="password" placeholder="Password" required />
-          <StyledButton type="submit">Login</StyledButton>
+          <StyledInput data-test='loginName' type="text" placeholder="Username" name="username" onChange={(e)=>setUsername(e.target.value)} required />
+          <StyledInput data-test='loginPassword' type="password" placeholder="Password" required />
+          <StyledButton data-test='loginSbmt' type="submit">Login</StyledButton>
         </StyledForm>
       </FormContainer>
     </LoginContainer>

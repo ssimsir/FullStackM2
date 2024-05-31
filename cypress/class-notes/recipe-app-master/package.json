@@ -1,5 +1,4 @@
 {
-  
   "name": "rc14_recipe-app",
   "version": "0.1.0",
   "private": true,
@@ -33,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^13.10.0"
   }
 }
